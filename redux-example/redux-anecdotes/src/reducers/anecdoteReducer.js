@@ -28,6 +28,8 @@ const reducer = (state = initialState, action) => {
         ...anecdoteToVote, 
         votes: anecdoteToVote.votes + 1 
       }
+      console.log('state now: ', state)
+      console.log('action', action)
       return state.map(anecdote =>
         anecdote.id !== anecid ? anecdote : votedAnecdote
       )
@@ -47,13 +49,12 @@ const reducer = (state = initialState, action) => {
     default:
       return state
   }
-  // console.log('state now: ', state)
-  // console.log('action', action)
+
 
   // return state
 }
 
-export const vote = (id) => {
+export const voteClick = (id) => {
   return {
     type: 'VOTE',
     data: { id }
