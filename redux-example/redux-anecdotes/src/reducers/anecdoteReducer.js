@@ -33,25 +33,29 @@ const reducer = (state = initialState, action) => {
       return state.map(anecdote =>
         anecdote.id !== anecid ? anecdote : votedAnecdote
       )
-  
-
-
-    // case 'TOGGLE_IMPORTANCE':
-    //   const id = action.data.id
-    //   const noteToChange = state.find(n => n.id === id)
-    //   const changedNote = { 
-    //     ...noteToChange, 
-    //     important: !noteToChange.important 
-    //   }
-    //   return state.map(note =>
-    //     note.id !== id ? note : changedNote 
-    //   )
+    case 'NEW_ANECDOTE':
+      console.log('state now: ', state)
+      console.log('action', action)
+      return state.concat(action.data)
     default:
       return state
   }
 
 
   // return state
+}
+
+
+
+export const createAnecdote = (content) => {
+  return {
+    type: 'NEW_ANECDOTE',
+    data: {
+      content: content,
+      votes: 0,
+      id: getId()
+    }
+  }
 }
 
 export const voteClick = (id) => {
